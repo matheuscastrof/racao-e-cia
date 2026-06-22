@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos | Ração & Cia</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/produtos.css">
+</head>
+
+<body>
+
+<!-- TOPO INFO -->
+<div class="infor">
+  <a href=""><img src="img/estrela1.png" alt=""><p>Ração & Cia cuidando do seu pet no dia a dia.</p></a>
+  <a href=""><img src="./img/telefone-fixo.png" alt=""><p id="telFixo">(32)99842-2047</p></a>
+  <a href=""><img src="./img/icons8-mensagem-50.png" alt=""><p>rafisalc@gmail.com</p></a>
+  <a target="_blank" href="https://share.google/9z6sV5ADAPAqGkQjQ"><img src="img/localização.png" alt=""><p>Rua João Januzzi, 49. Guidoval, MG</p></a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html"><img src="./img/logo.jpg" alt="Ração & Cia"></a>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Buscar produto...">
+    <button onclick="filtrarPorBusca()">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+    </button>
+  </div>
+  <div class="redeSocial">
+    <a target="_blank" href="https://www.instagram.com/racaoecia_guidoval/"><img src="./img/instagram.png" alt="Instagram"></a>
+    <a class="wpp" href="https://wa.me/5532998422047" target="_blank"><img src="./img/whatsapp.png" alt="WhatsApp"></a>
+    <a target="_blank" class="Facebook" href="https://www.facebook.com/share/19ebL8CjrL/?mibextid=wwXIfr"><img src="./img/Facebook.png" alt="Facebook"></a>
+  </div>
+</header>
+
+<!-- NAV -->
+<div class="container">
+  <div class="camposv">
+    <ul>
+      <a href="index.html" class="item"><li>Página Inicial</li></a>
+      <a href="produtos.html" class="item" style="color:#ff9900"><li>Produtos</li></a>
+      <a href="" class="item"><li>Agropecuária</li></a>
+      <a href="" class="item"><li>Camping e Pesca</li></a>
+      <a href="" class="item"><li>Casa e Utilidades</li></a>
+    </ul>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a> &rsaquo; <span>Produtos</span>
+</div>
+
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<a href="https://wa.me/5532998422047" class="whatsapp-btn" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="page-produtos">
+
+  <!-- SIDEBAR FILTROS -->
+  <aside class="filtros-sidebar">
+    <h2>Filtros</h2>
+
+    <div class="filtro-grupo">
+      <h3>Categoria</h3>
+      <label><input type="checkbox" value="caes" onchange="filtrarCards()"> Cães</label>
+      <label><input type="checkbox" value="gatos" onchange="filtrarCards()"> Gatos</label>
+      <label><input type="checkbox" value="aves" onchange="filtrarCards()"> Aves</label>
+      <label><input type="checkbox" value="peixes" onchange="filtrarCards()"> Peixes</label>
+    </div>
+
+    <div class="filtro-grupo">
+      <h3>Marca</h3>
+      <label><input type="checkbox" value="quatree" onchange="filtrarCards()"> Quatree</label>
+      <label><input type="checkbox" value="specialdog" onchange="filtrarCards()"> Special Dog</label>
+      <label><input type="checkbox" value="magnus" onchange="filtrarCards()"> Magnus</label>
+      <label><input type="checkbox" value="premier" onchange="filtrarCards()"> Premier</label>
+    </div>
+
+    <div class="filtro-grupo">
+      <h3>Promoção</h3>
+      <label><input type="checkbox" value="promo" onchange="filtrarCards()"> Somente em promoção</label>
+    </div>
+
+    <div class="filtro-grupo">
+      <h3>Preço</h3>
+      <label><input type="checkbox" value="ate50" onchange="filtrarCards()"> Até R$ 50</label>
+      <label><input type="checkbox" value="50a100" onchange="filtrarCards()"> R$ 50 a R$ 100</label>
+      <label><input type="checkbox" value="100a200" onchange="filtrarCards()"> R$ 100 a R$ 200</label>
+      <label><input type="checkbox" value="acima200" onchange="filtrarCards()"> Acima de R$ 200</label>
+    </div>
+  </aside>
+
+  <!-- ÁREA DE PRODUTOS -->
+  <section class="produtos-area">
+    <div class="produtos-header">
+      <div>
+        <h1>Produtos</h1>
+        <span id="contadorProdutos">Carregando...</span>
+      </div>
+      <select class="ordenar-select" id="ordenarSelect" onchange="ordenarCards()">
+        <option value="">Ordenar por</option>
+        <option value="menor">Menor preço</option>
+        <option value="maior">Maior preço</option>
+        <option value="nome">Nome A-Z</option>
+      </select>
+    </div>
+
+    <div class="produtos-grid" id="produtosGrid">
+      <!-- cards gerados via JS -->
+      <div class="sem-resultado" id="semResultado">
+        Nenhum produto encontrado. Tente outros filtros.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MODAL DETALHE -->
+<div class="modal-overlay" id="modalOverlay" onclick="fecharModalFora(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-fechar" onclick="fecharModal()">&#10005;</button>
+    <img class="modal-img" id="modalImg" src="" alt="">
+    <div class="modal-info">
+      <p class="modal-nome" id="modalNome"></p>
+      <p class="modal-descricao" id="modalDescricao"></p>
+      <p class="modal-preco-de" id="modalPrecoDe"></p>
+      <p class="modal-preco-por" id="modalPrecoPor"></p>
+      <a class="modal-btn-comprar" id="modalBtnComprar" href="#" target="_blank">
+        <i class="fab fa-whatsapp"></i> Comprar pelo WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+ <footer>
+    <div class="footer-top">
+ 
+      <!-- Logo e descrição -->
+      <div class="footer-col footer-col-logo">
+        <img src="./img/logo.jpg" alt="Ração & Cia">
+        <p>Cuidando da alimentação e bem-estar do seu pet com carinho e qualidade desde sempre.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/racaoecia_guidoval/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/5532998422047" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/19ebL8CjrL/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+ 
+      <!-- Links rápidos -->
+      <div class="footer-col">
+        <h3>Links Rápidos</h3>
+        <a href="index.html">Página Inicial</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="quemsomos.html">Quem Somos</a>
+        <a href="missao.html">Nossa Missão</a>
+        <a href="">Agropecuária</a>
+        <a href="">Camping e Pesca</a>
+        <a href="">Casa e Utilidades</a>
+      </div>
+ 
+      <!-- Contato -->
+      <div class="footer-col">
+        <h3>Contato</h3>
+        <div class="footer-contato-item">
+          <i class="fas fa-phone"></i>
+          <span>(32) 99842-2047</span>
+        </div>
+        <div class="footer-contato-item">
+          <i class="fas fa-envelope"></i>
+          <span>rafisalc@gmail.com</span>
+        </div>
+        <div class="footer-contato-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Rua João Januzzi, 49<br>Guidoval, MG</span>
+        </div>
+        <div class="footer-contato-item">
+          <i class="fas fa-clock"></i>
+          <span>Seg–Sex: 8h às 18h<br>Sáb: 8h às 13h</span>
+        </div>
+      </div>
+ 
+      <!-- WhatsApp CTA -->
+      <div class="footer-col">
+        <h3>Fale Conosco</h3>
+        <p>Tire suas dúvidas ou faça seu pedido diretamente pelo WhatsApp!</p>
+        <a href="https://wa.me/5532998422047" target="_blank"
+          style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:11px 20px;background:#25D366;color:#fff;font-weight:900;border-radius:8px;font-size:14px;text-decoration:none;transition:background .2s;"
+          onmouseover="this.style.background='#1ebe5a'" onmouseout="this.style.background='#25D366'">
+          <i class="fab fa-whatsapp" style="font-size:18px;"></i> Chamar no WhatsApp
+        </a>
+      </div>
+ 
+    </div>
+ 
+    <div class="footer-bottom">
+      © 2025 <span>Ração & Cia</span> — Todos os direitos reservados. Guidoval, MG.
+    </div>
+  </footer>
+<script src="./produtos.js" defer></script>
+
+</body>
+</html>
